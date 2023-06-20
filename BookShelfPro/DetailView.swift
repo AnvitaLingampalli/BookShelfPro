@@ -16,6 +16,7 @@ struct DetailView: View {
     let isFav:Bool
     @State var dataController: coreDataController = coreDataController()
     @State var selected:Bool = false
+   
     
     var body: some View {
         NavigationView{

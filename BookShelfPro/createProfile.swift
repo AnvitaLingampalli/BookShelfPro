@@ -12,6 +12,7 @@ struct createProfile: View {
     @State var gmail: String = ""
     @State var bday: String = ""
     @State var dataController: coreDataController = coreDataController()
+    @State private var showAlert = false
     
     var body: some View {
         VStack{
@@ -48,11 +49,15 @@ struct createProfile: View {
             
             Button("Create Profile", action: {
                 dataController.saveProfile(username: username, email: gmail, bday:bday)
+                showAlert = true
             })
             .padding()
             .background(Color.pink)
             .foregroundColor(Color.white)
             .cornerRadius(10)
+            .alert("Profile created!", isPresented: $showAlert){
+                Button("OK", role: .cancel){}
+            }
             
             Spacer()
             

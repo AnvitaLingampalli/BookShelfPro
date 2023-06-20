@@ -20,7 +20,7 @@ struct MyProfile: View {
     
     var body: some View {
         let x = dataController.getProfile()
-        //var name = x[0].username
+        var len = x.count
         VStack{
             Text("My Profile")
                 .font(.largeTitle)
@@ -28,23 +28,23 @@ struct MyProfile: View {
             HStack{
                 Text("Username")
                     .frame(maxWidth: .infinity, alignment: .leading)
-                Text("\(x[0].username ?? "No data")")
+                Text("\(x[len-1].username ?? "No data")")
             }.padding()
             HStack{
                 Text("Gmail")
                     .frame(maxWidth: .infinity, alignment: .leading)
-                Text("\(x[0].email ?? "No data")")
+                Text("\(x[len-1].email ?? "No data")")
             }.padding()
             HStack{
                 Text("Birthday")
                     .frame(maxWidth: .infinity, alignment: .leading)
-                Text("\(x[0].birthday ?? "No data")")
+                Text("\(x[len-1].birthday ?? "No data")")
             }.padding()
             Spacer()
             HStack{
                 Text("My Wishlist")
                     .frame(maxWidth: .infinity, alignment: .leading)
-                Text("10") //using dummy number for this iteration
+                Text("4") //using dummy number for this iteration
             }.padding()
             Spacer()
             NavigationLink(destination: mapView(address: "")){

@@ -28,6 +28,8 @@ struct mapView: View {
     @State private var markers: [Location] = []
     @Environment(\.dismiss) private var dismiss
     @State var address:String
+    
+    @State private var showTitle = true
    
     //@ObservedObject  var cModel : cityViewModel
     
@@ -51,9 +53,18 @@ struct mapView: View {
             ){ location in
                 MapAnnotation(coordinate: location.coordinate){
                     Text(location.name)
+                            .font(.callout)
+                            .padding(5)
+                            .background(Color(.white))
+                            .cornerRadius(10)
+                            .opacity(showTitle ? 0 : 1)
                     Image(systemName: "mappin.circle.fill")
-                        .font(.title)
                         .foregroundColor(.red)
+                        .onTapGesture {
+                              withAnimation(.easeInOut) {
+                                showTitle.toggle()
+                              }
+                            }
                     Image(systemName: "arrowtriangle.down.fill")
                         .font(.caption)
                         .foregroundColor(.red)
